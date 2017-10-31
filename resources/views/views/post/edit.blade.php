@@ -9,6 +9,9 @@
             <p><a href="#" class="pull-right" onclick="document.getElementById('deletePost').submit()">Delete</a></p>
             {!! Form::close() !!}
             <p>{{ $post->content }}</p>
+            @if(!empty($post->file))
+                <p><a href="{{asset($post->file)}}" target="_blank">File</a></p>
+            @endif
         </div>
     </div>
 
