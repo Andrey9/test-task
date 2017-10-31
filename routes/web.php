@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'category.index', 'uses' => 'CategoryController@index']);
+
+Route::resource('category', 'CategoryController', ['except' => ['index']]);
+
+Route::resource('post', 'PostController', ['except' => ['index']]);
+
+Route::post('comment', ['as' => 'comment.store', 'uses' => 'CommentController@store']);
+
+Route::any('{all}', function(){
+    abort(404);
+})->where('all', '.*');
